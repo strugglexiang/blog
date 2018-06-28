@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        JSON.parse(jsonstr); //可以将json字符串转换成json对象 
+        JSON.stringify(jsonobj); //可以将json对象转换成json对符串
+        */
+
+        /*
+        0 （未初始化）对象已建立，但是尚未初始化（尚未调用open方法）
+        1（初始化）已调用send()方法，正在发送请求
+        2（发送数据）send()方法调用完成，但是当前的状态及http头未知
+        3（数据传送中）已接收部分数据，因为相应及http头不全，这时通过responseText获取部分数据会出现错误
+        4（完成）数据接收完成，此时可以通过responseText获取完整的数据
+        */
+        
+        // ----- get方式请求
+        /*
+       const xhr = new XMLHttpRequest()
+       xhr.onreadystatechange = () => {
+           if(xhr.readyState === 4 && xhr.status === 200){
+            //    console.log(typeof xhr.responseText)
+            //    console.log(typeof JSON.parse(xhr.responseText))
+            //    console.log(xhr.responseText)
+               let data = JSON.parse(xhr.responseText)
+               alert(data.msg)
+           }
+       }
+       xhr.open('get', 'http://localhost:3000/get?x=1', true)
+       xhr.send(null)
+        */
+      
+
+        // myXMLHttpRequest.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+        const xhr = new XMLHttpRequest()
+        const postData = {
+            name:'strugglexiang',
+            age:'22'
+        }
+        xhr.onreadystatechange = () => {
+            if(xhr.readyState === 4 && xhr.status ===200){
+                console.log(JSON.stringify(xhr.responseText))
+            }
+        }
+        xhr.open('post', "http://localhost:3000/post", true)
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+        xhr.send(`userName=${postData.name}&age=${postData.age}`)
+
+    </script>
+</body>
+</html>
