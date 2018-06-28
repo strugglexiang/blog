@@ -1,3 +1,5 @@
+'use strict';
+
 //------ 类数组转换为数组
 /*
 let json = {
@@ -11,7 +13,6 @@ let json = {
 console.log(Array.from(json))//["wo", "shi", "qin", "shou"]
 console.log(typeof Array.from(json))//object
 */
-
 
 //-------- 合并数组
 /*
@@ -59,7 +60,6 @@ for(let [key, value] of arr.entries()){
 }
 */
 
-
 //------- entries
 /*
 let arr = ['I', 'am', 'god']
@@ -70,13 +70,9 @@ console.log(x.next().value)//  [1, "am"]
 console.log(x.next().value)// [2, "god"]
 */
 
-
-// let arr = ['I', 'am', 'god']
-// let x = arr.keys()
-// console.log(x)
-// console.log(x.next()) 
-// console.log(x.next())
-// console.log(x.next())
-
-
-
+var arr = ['I', 'am', 'god'];
+var x = arr.keys();
+console.log(x);
+console.log(x.next());
+console.log(x.next());
+console.log(x.next());

@@ -5,6 +5,7 @@
 - [4-扩展运算符和rest运算符](#4-扩展运算符和rest运算符)
 - [5-字符串模板](#5-字符串模板)
 - [6-数字操作](#6-数字操作)
+- [7-数组方法拓展](#7-数组方法拓展)
 
 
 ## 1-利用babel将es6语法转换为es5
@@ -252,4 +253,84 @@ console.log(Math.pow(2, 53))// 9007199254740992
 console.log(Number.MAX_SAFE_INTEGER)// +9007199254740992
 console.log(Number.MIN_SAFE_INTEGER)// -9007199254740992
 console.log(Number.isSafeInteger(Math.pow(2,54)))//false
+```
+
+## 7-数组方法拓展
+1. json数组格式，类数组
+```
+let json = {
+    '0': 'wo',
+    '1': 'shi',
+    '2': 'qin',
+    '3': 'shou',
+    'length':4
+}
+```
+2. Array.from: 将类数组转换为数组，返回值为数组
+```
+let json = {
+    '0': 'wo',
+    '1': 'shi',
+    '2': 'qin',
+    '3': 'shou',
+    'length':4
+}
+
+console.log(Array.from(json))//["wo", "shi", "qin", "shou"]
+console.log(typeof Array.from(json))//object
+```
+3. Array.of： 将参数合并为数组，返回值为数组
+```
+console.log(Array.of(1, '2')) //[1, "2"]
+```
+4. Array实例.find(实例方法)： 在数组中查找元素，找到返回该元素，找不到返回undefined
+> Array.includes()方法也有，只不过返回布尔值
+```
+let x = ['strugglexiang', 18374847135]
+let s = x.find((item, index, array) => {
+    return item === 'asdf'
+})
+let b = x.find((item, index, array) => {
+    return item === 18374847135
+})
+console.log(s)//undefined
+console.log(b)// number类型  18374847135
+```
+5. 实例方法fill: fill() 方法用一个固定值填充一个数组中从起始索引到终止索引内的全部元素。
+>变动的是原数组，没有产生新数组
+```
+//用一个值从起止索引填充到终止索引(到终止的前一个)
+//start 默认值为0
+//end 默认值arr.length
+let arr = ['apple', 'banana', 'egg']
+let a = arr.fill('water', 0, 1)// ["water", "banana", "egg"]
+let a = arr.fill('water', 0, 2)//(3) ["water", "water", "egg"]
+let a = arr.fill('water', 0, 3)//["water", "water", "water"]
+let a = arr.fill('water', 0, 4)//["water", "water", "water"]
+```
+6. for遍历数组
+```
+let arr = ['I', 'am', 'god']
+//遍历值
+for(let item of arr){
+    console.log(item)
+}
+//遍历key keys()方法返回一个新的Array迭代器，它包含数组中每个索引的键。
+console.log(arr.keys().next())//对象类型 {value: 0, done: false}
+for(let key of arr.keys()){
+    console.log(key)
+}
+//同时遍历key value
+for(let [key, value] of arr.entries()){
+    console.log(key + ':' + value)
+}
+```
+7. 实例方法entries： 生成iterator形式的数组
+```
+let arr = ['I', 'am', 'god']
+let x = arr.entries()
+console.log(x)
+console.log(x.next().value) // [0, "I"]
+console.log(x.next().value)//  [1, "am"]
+console.log(x.next().value)// [2, "god"]
 ```
