@@ -1,3 +1,5 @@
+"use strict";
+
 //--------- es6函数参数添加默认值
 /*
 function add(a, b = 1){
@@ -16,7 +18,7 @@ console.log(add.length) //输出结果1
 
 //  ------- 箭头函数
 //箭头函数不能用作构造函数
-//箭头函数里面的this指向
-let add = (a, b) => a + b  //表达式作为返回值
-let cut = (a, b) => {return a - b}  //函数体中写代码
-console.log(add(1, 2)) //输出结果 3
+var add = function add(a, b) {
+    return a + b;
+};
+console.log(add(1, 2));

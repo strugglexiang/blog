@@ -6,7 +6,10 @@
 - [5-字符串模板](#5-字符串模板)
 - [6-数字操作](#6-数字操作)
 - [7-数组方法拓展](#7-数组方法拓展)
-
+- [8-箭头函数](#8-箭头函数)
+- [9-函数和数组补漏](#9-函数和数组补漏)
+- [10-对象的使用](#10-对象的使用)
+- [11-Symbol数据类型](#11-Symbol数据类型)
 
 ## 1-利用babel将es6语法转换为es5
 1. 全局安装babel-cli
@@ -328,4 +331,150 @@ console.log(x)
 console.log(x.next().value) // [0, "I"]
 console.log(x.next().value)//  [1, "am"]
 console.log(x.next().value)// [2, "god"]
+```
+
+## 8-箭头函数
+1. 函数参数可以设置默认值
+```
+function add(a, b = 1){
+    return a + b
+}
+console.log(add(1))// 输出结果 2
+```
+2. 如果使用别人的框架，不知道必需参数传几个
+```
+function add(a, b = 1){
+    return a + b
+}
+console.log(add.length) //输出结果1
+```
+3. 箭头函数
+> 箭头函数不能用作构造函数
+>
+> 要特别注意箭头函数里面this的指向
+```
+let add = (a, b) => a + b  //表达式作为返回值
+let cut = (a, b) => {return a - b}  //函数体中写代码
+console.log(add(1, 2)) //输出结果 3
+```
+
+## 9-函数和数组补漏
+1. 对象的函数解构
+> 当对象作为函数参数的时候，我们希望该对象的属性可以直接拿来使用
+```
+let json = {
+    userName: 'xiaoming',
+    age: 20,
+}
+function test( { userName, age}) {
+     console.log(userName + age)    
+}
+test(json) // 输出结果： xiaoming20
+```
+2. 数组的函数解构
+> 扩展运算符的运用，将数组转换为用逗号隔开的参数序列
+```
+function test(a, b){
+    console.log(a + b)
+}
+
+test(...[3, 5])// 输出结果 8
+```
+3. in的用法
+> in用来判断数组是否包含某个值或对象是否包含某个属性
+```
+let arr = [1, 2, 3]
+let json = {
+    a: 'x',
+    b: 'd'
+}
+console.log(2 in arr) // 输出结果 true
+console.log(5 in arr) // 输出结果 false
+console.log('a' in json)// 输出结果 true
+console.log('x' in json)// 输出结果 false
+```
+4. 数组的遍历
+> forEach filter(返回为true的新数组) some map(元素替换)
+
+
+
+## 10-对象的使用
+1. 对象的赋值
+> 简化对象的赋值
+```
+let a = 'nihao'
+let b = 'wohao'
+let obj = {
+    a,
+    b,
+    add(a, b){
+       return a + b
+    }
+}
+console.log(obj) //输出结果  {a: "nihao", b: "wohao", add: ƒ}
+console.log(obj.add(1, 2)) // 输出结果 3
+
+
+//和下面的写法是一样的
+let obj1 = {
+    a: a,
+    b: b,
+    add: function(a, b){
+        return a + b
+    }
+}
+console.log(obj1) //输出结果  {a: "nihao", b: "wohao", add: ƒ}
+console.log(obj1.add(1, 2)) // 输出结果 3
+```
+2. 对象key值构建
+> 当我们不知道属性的key，只知道value时，我们可以利用变量构建key
+```
+let some = 'hihao'
+let obj = {
+    [some]: 'hello'
+}
+console.log(obj)// 输出结果  {hihao: "hello"}
+```
+3. 对象的合并
+> Obj.assign方法
+```
+let some = 'hihao'
+let obj = {
+    [some]: 'hello'
+}
+console.log(obj)// 输出结果  {hihao: "hello"}
+```
+
+## 11-Symbol数据类型
+> 对象的属性名都是字符串类型，如果我们使用框架或者别人的代码，对对象添加属性可能覆盖掉
+> 原有的属性，造成污染，因此有了Symbol数据类型，代表了独一无二
+
+1. Symbol在对象中的使用
+> 由于Symbol不是字符串，不能使用.语法，只能使用[]取值
+```
+let x = Symbol()
+let s = Symbol('s')
+let b = Symbol('b')
+let obj = {
+    a: 'nihao',
+    [x]: 'wohao'
+}
+console.log(obj)//{a: "nihao", Symbol(): "wohao"}
+console.log(obj.x) // undefined Symbol类型的属性不能使用‘.’符号取值，只能使用中括号
+console.log(obj[x])//wohao
+console.log(b === s) //false
+```
+2. Symbol可在in遍历对象时保护对象属性
+```
+let x = Symbol('ta')
+let obj = {
+   ni: 'hao',
+   wo: 'hao',
+}
+obj[x] = 'buhao'  //另一种给对象名为Symbol的写法
+for (let value in obj){
+    console.log(value)
+}// 输出结果 
+//ni
+//wo
 ```
