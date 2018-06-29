@@ -26,7 +26,7 @@ console.log(d1 + d3)//控制台显示somthing2
 //说明null代表把值解析为null，替代默认值
 //undefind代表什么都没有，采取默认值
 
-// ------- 变量的结构赋值
+// ------- 对象的结构赋值
 let obj = {bar: '苹果', foo: '香蕉'}
 let {bar, foo } = obj
 console.log(bar)

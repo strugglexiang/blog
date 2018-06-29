@@ -40,14 +40,14 @@ console.log(Math.max(...[2, 5, 4, 11, 1]))//es6的写法 输出11
 */
 
 //---------- 生成数组
-/*
+
 let arr1 = [1, 2, 3]
 let temp = arr1
 let arr2 = [...arr1, 4, 5, 6]
 console.log(arr2)//[1, 2, 3, 4, 5, 6]
-console.log(arr1 === temp)//false 浅拷贝
-console.log(arr1 === arr2)//true 
-*/
+console.log(arr1 === temp)//true 浅拷贝
+console.log(arr1 === arr2)//false 
+
 
 
 // -------- 和并数组
@@ -66,6 +66,7 @@ console.log(b)//[2, 3, 4, 5]
 */
 
 // -------- 对象中的用法
+/*
 let a = {
     ni: 'hao'
 }
@@ -75,3 +76,4 @@ let b = {
     wo: 'hao'
 }
 console.log(b)
+*/

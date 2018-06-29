@@ -43,11 +43,11 @@ console.log(a)
 ```
 2. const 声明常量
 
-## 3-变量的结构赋值
+## 3-变量的解构赋值
 >解构赋值：es6允许我们从数组和对象中提取值赋值给变量
-1. 数组的结构赋值：将数组中的值提取出来赋值给变量
+1. 数组的解构赋值：将数组中的值提取出来赋值给变量
 ```
-// ------ 数组的结构赋值
+// ------ 数组的解构赋值
 let [a1, a2, a3] = [1, 2, 3]
 console.log(a1)//输出值为1
 console.log(a2)//输出值为2
@@ -75,11 +75,7 @@ console.log(d1 + d3)//控制台显示somthing2
 //说明null代表把值解析为null，替代默认值
 //undefind代表什么都没有，采取默认值
 
-// ------- 变量的结构赋值
-let obj = {bar: '苹果', foo: '香蕉'}
-let {bar, foo } = obj
-console.log(bar)
-console.log(foo)
+
 
 ```
 2. 对象的解构赋值
@@ -89,11 +85,10 @@ let {bar, foo } = obj
 console.log(bar) //输出苹果
 console.log(foo) //输出香蕉
 ```
-3. 字符串的结构赋值
+3. 字符串的解构赋值
 ```
 字符串也可以解构，这是因为，此时字符串被转换成了一个类似数组的对象。
-// ------ 字符串的结构赋值
-// 字符串也可以解构，这是因为，此时字符串被转换成了一个类似数组的对象。
+
 let [e1, e2, e3] = 'dnf'
 console.log(e1, e2, e3) //d n f
 
@@ -142,8 +137,8 @@ let arr1 = [1, 2, 3]
 let temp = arr1
 let arr2 = [...arr1, 4, 5, 6]
 console.log(arr2)//[1, 2, 3, 4, 5, 6]
-console.log(arr1 === temp)//false 浅拷贝
-console.log(arr1 === arr2)//true 
+console.log(arr1 === temp)//true
+console.log(arr1 === arr2)//false 浅拷贝
 ```
 6. 合并数组
 ```
