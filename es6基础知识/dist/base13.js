@@ -41,4 +41,4 @@ console.log(x.has(json)); //true
 x.delete('sdfs');
 console.log(x); // Map(1) {{…} => 1}
 x.clear();
-console.log(x);
+console.log(x); // Map(0) {}

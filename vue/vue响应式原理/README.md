@@ -4,7 +4,7 @@
 
 
 ## 1-vue响应式原理
-响应式原理基于Object.define(object, propertyname, descriptor)方法
+响应式原理基于Object.defineProperty(object, propertyname, descriptor)方法
 object: 要添加和修改属性的对象，必需
 propertyname:要添加和修改的属性，必需
 descriptor: 属性描述符。

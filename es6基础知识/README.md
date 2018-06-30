@@ -9,10 +9,10 @@
 - [8-箭头函数](#8-箭头函数)
 - [9-函数和数组补漏](#9-函数和数组补漏)
 - [10-对象的使用](#10-对象的使用)
-- [11-Symbol数据类型](#11-Symbol数据类型)
-- [12-Set和WeakSet](#12-Set和WeakSet)
-- [13-Map数据结构](#13-Map数据结构)
-
+- [11-学习Symbol数据类型](#11-学习Symbol数据类型)
+- [12-学习Set和WeakSet](#12-学习Set和WeakSet)
+- [13-学习Map数据结构](#13-学习Map数据结构)
+- [14-学习Proxy](#14-学习Proxy)
 ## 1-利用babel将es6语法转换为es5
 1. 全局安装babel-cli
 ```
@@ -383,7 +383,7 @@ function test(a, b){
 test(...[3, 5])// 输出结果 8
 ```
 3. in的用法
-> in用来判断数组是否包含某个值或对象是否包含某个属性
+> in用来判断数组是否下标是否为空或对象是否包含某个属性
 ```
 let arr = [1, 2, 3]
 let json = {
@@ -454,7 +454,7 @@ let obj4 = Object.assign(obj1, obj2, obj3)
 console.log(obj4) //输出结果 {name: "I", is: "am", descriptor: "ugly"}
 ```
 
-## 11-Symbol数据类型
+## 11-学习Symbol数据类型
 > 对象的属性名都是字符串类型，如果我们使用框架或者别人的代码，对对象添加属性可能覆盖掉
 > 原有的属性，造成污染，因此有了Symbol数据类型，代表了独一无二
 
@@ -488,7 +488,7 @@ for (let value in obj){
 //wo
 ```
 
-## 12-Set和WeakSet
+## 12-学习Set和WeakSet
 1. Set
 > Set是一种新的数据结构，和数组类似，区别在与它不允许有重复项 
 - Set数据结构的创建
@@ -550,7 +550,7 @@ console.log(w) // WeakSet {{…}, {…}}
 ```
 
 
-## 13-Map数据结构
+## 13-学习Map数据结构
 > 我们知道json是由键值对构成的数据结构，Map也是一种由特殊键值对构成的数据结构
 >
 > 区别在于Map的键可以是对象，字符串，数组，对应形式变得非常灵活
@@ -582,5 +582,68 @@ x.delete('sdfs')
 console.log(x) // Map(1) {{…} => 1}
 x.clear()
 console.log(x)// Map(0) {}
+
+```
+
+## 14-学习Proxy
+> Proxy 代理 它能在对象和函数调用进行预处理，从而改变代码原有的意思
+>
+> 它接收两个对象作为参数，第一参数代表要被预处理的目标对象，第二个参数代表预处理的配置
+>
+> 在handler内部,Reflect就代表该Proxy对象，它能处理默认行为
+1. 对象get(取值)预处理
+> 接收3个参数 目标对象target 要取值的属性property Proxy对象本身(可选)
+```
+ let obj = {} //即target
+ let handler = {
+     get(target, key){
+        if(key === 'name'){
+            return '所有的姓名必需是我'
+        }
+        return 'sss'
+     }
+ }
+ let x = new Proxy(obj, handler)
+ console.log(x.name)// 输出结果 所有的姓名必需是我
+ console.log(x.some)// 输出结果  sss
+```
+2. 对象set(赋值)预处理
+> 接收4个参数 目标对象target 要赋值的属性property 要赋的值value Proxy对象本身(可选)
+```
+let obj = {}
+let handler = {
+    set(target, key, value){
+       if(!Number.isInteger(value)){
+          throw new Error('请赋值为数字')
+       }
+       target[key] = value + 3
+       return true
+    }
+}
+let x = new Proxy(obj, handler)
+x.some = 5
+console.log(obj.some) //8
+x.some = 'asdf'// base14.js:35 Uncaught Error: 请赋值为数字
+// x.some = 'sadf'
+
+// x.give = 'asdf'
+```
+3. 函数apply(调用预处理)
+> 接收3个参数 目标对象 目标对象上下文(this) 目标对象参数数组
+```
+function add(a, b){
+    return a + b
+}
+let handler = {
+    apply(target, ctx, args){
+       if(args.includes(5)){
+           return '参数中有5'
+       }
+       return Reflect.apply(...arguments)
+    }
+}
+let x = new Proxy(add, handler)
+console.log(x(1, 2)) //3
+console.log(x(5, 6))  //参数中有5
 
 ```
