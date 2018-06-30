@@ -10,6 +10,8 @@
 - [9-函数和数组补漏](#9-函数和数组补漏)
 - [10-对象的使用](#10-对象的使用)
 - [11-Symbol数据类型](#11-Symbol数据类型)
+- [12-Set和WeakSet](#12-Set和WeakSet)
+- [13-Map数据结构](#13-Map数据结构)
 
 ## 1-利用babel将es6语法转换为es5
 1. 全局安装babel-cli
@@ -438,11 +440,18 @@ console.log(obj)// 输出结果  {hihao: "hello"}
 3. 对象的合并
 > Obj.assign方法
 ```
-let some = 'hihao'
-let obj = {
-    [some]: 'hello'
+let obj1 = {
+    name: 'I',
 }
-console.log(obj)// 输出结果  {hihao: "hello"}
+let obj2 = {
+    is: 'am',
+}
+let obj3 = {
+    descriptor: 'ugly',
+}
+
+let obj4 = Object.assign(obj1, obj2, obj3)
+console.log(obj4) //输出结果 {name: "I", is: "am", descriptor: "ugly"}
 ```
 
 ## 11-Symbol数据类型
@@ -477,4 +486,101 @@ for (let value in obj){
 }// 输出结果 
 //ni
 //wo
+```
+
+## 12-Set和WeakSet
+1. Set
+> Set是一种新的数据结构，和数组类似，区别在与它不允许有重复项 
+- Set数据结构的创建
+```
+let x = new Set([1, 2, 3, 5, 2])
+console.log(x) // 控制台上输出  Set(4) {1, 2, 3, 5}
+x.add(2)
+console.log(x)// 控制台输出 Set(4) {1, 2, 3, 5} 没有添加重复值
+```
+- Set的属性和方法：add,delete,has,clear,size(属性)
+```
+//add
+let x = new Set([1, 2, 3, 1, 2])
+x.add(5)
+console.log(x)//  Set(4) {1, 2, 3, 5}
+
+
+//delete
+x.delete(1)
+x.delete(188)
+console.log(x)// Set(2) {2, 3}
+
+
+//has
+let x = new Set([1, 2, 3, 1, 2])
+console.log(x.has(1)) //true
+console.log(x.has(188))// false
+
+//size
+let x = new Set([1, 2, 3, 1, 2])
+console.log(x.size)// 3
+```
+- Set的遍历
+```
+let x = new Set([1, 2, 3, 1, 2])
+for(let item of x) {
+     console.log(item) // 1 2 3 
+}
+
+x.forEach((item) => {
+    console.log(item)// 1 2 3
+})
+```
+- Set 和 扩展运算符数组去重 
+```
+console.log([...new Set([1,1,1,2,3,2])])// [1, 2, 3]
+```
+2. WeakSet
+> WeakSet和set是一样的，区别在与它的成员只能是对象，没有size属性，不能够遍历
+>
+> 构造函数中不能添加参数
+>
+> WeakSet能够消除相同的引用
+```
+let w = new WeakSet()
+w.add({hi: 'hao'})
+w.add({hi: 'hao'})
+console.log(w) // WeakSet {{…}, {…}}
+```
+
+
+## 13-Map数据结构
+> 我们知道json是由键值对构成的数据结构，Map也是一种由特殊键值对构成的数据结构
+>
+> 区别在于Map的键可以是对象，字符串，数组，对应形式变得非常灵活
+1. Map数据结构的声明: new Map
+```
+let x = new Map()
+x.set({ni: 'hao'}, 1)
+x.set('sdf', [1, 2, 3])
+console.log(x)//Map(2) {{…} => 1, "sdf" => Array(3)}
+```
+2. Map的方法：set,get,delete,clear,has,size(属性)
+> set赋值，get取值，delete删除特定，clear清空，has检测含有，size数量
+```
+let json = {
+    s: 'asdfsdf'
+}
+
+let x = new Map()
+x.set(json, 1)
+x.set('sdfs', json)
+console.log(x)// Map(2) {{…} => 1, "sdfs" => {…}}
+
+
+console.log(x.get(json))//1   
+console.log(x.get('sdfs'))//{s: "asdfsdf"}
+console.log(x.size)//2
+console.log(x.has(json))//true
+x.delete('sdfs')
+console.log(x) // Map(1) {{…} => 1}
+x.clear()
+console.log(x)// Map(0) {}
+
 ```
