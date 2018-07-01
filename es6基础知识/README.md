@@ -13,6 +13,9 @@
 - [12-学习Set和WeakSet](#12-学习Set和WeakSet)
 - [13-学习Map数据结构](#13-学习Map数据结构)
 - [14-学习Proxy](#14-学习Proxy)
+- [15-Promise](15-Promise)
+- [16-类和类的继承](16-类和类的继承)
+- [17-模块化](17-模块化)
 ## 1-利用babel将es6语法转换为es5
 1. 全局安装babel-cli
 ```
@@ -646,4 +649,88 @@ let x = new Proxy(add, handler)
 console.log(x(1, 2)) //3
 console.log(x(5, 6))  //参数中有5
 
+```
+
+
+## 15-Promise
+Promise 
+> 英文的意思是承诺，可以理解为在某个异步操作后承诺执行某个函数
+>
+> 它是异步解决方案的一种，解决es5中回调地狱的问题
+>
+> 它是一个构造函数，生成Promise对象
+>
+> 接收两个函数作为参数（系统自动赋予),resolve和reject
+>
+> resolve函数将Promise对象的状态从“未完成”变为“成功”（即从 pending 变为 resolved）
+>
+> reject函数将Promise对象的状态从“未完成”变为“失败”（即从 pending 变为rejected）
+>
+> Promise实例生成以后，可以用then方法分别指定resolved状态和rejected状态的回调函数。
+>
+> 回调函数的参数由resolve和reject两个方法传
+```
+function dosomething(str){
+    return new Promise((resolve, reject) => {
+         let delay
+         if(str === '吃饭'){
+            delay = 2000
+         }else if(str === '睡觉'){
+            delay = 5000
+         }else{
+            return  reject(new Error('失败参数'))
+         }
+         setTimeout(() => {
+             console.log(`${str}需要${delay}毫秒`)
+             resolve('成功参数')
+         }, delay)
+    })
+}
+
+dosomething('吃饭')
+.then(res => {
+    console.log(res)//2秒后输出  吃饭需要2000毫秒 成功参数
+})
+.catch(error => {
+    console.log(error) //因为参数是吃饭，promise的状态不会变为rejeted，不会执行这里
+})
+```
+
+## 16-类和类的继承
+内心浮躁，略写
+
+## 17-模块化
+1. export
+```
+1.写法1 
+export var m = 1 
+
+2. 写法2 
+var m = 1
+export {m}
+
+3. 写法3 
+var n = 1;
+export {n as m};
+
+4. 函数错误写法
+// 报错
+function f() {}
+export f;
+
+5.变量错误写法
+// 报错
+var m = 1;
+export m;
+
+6. 直接导出值也是错误写法
+export 1
+
+// 正确
+export function f() {};
+
+2. import 
+```
+import {a, b, c} from './'
+import { lastName as surname } from './profile.js';
 ```
