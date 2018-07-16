@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>js计算方法</title>
+    <style>
+        .box {
+            width: 600px;
+            height: 500px;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            overflow: hidden;
+        }
+        .head {
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+        }
+        .content {
+            background-color: red;
+            height: 100%;
+            overflow-y: scroll;
+        }
+    </style>
+</head>
+<body>
+   <div class="box">
+       <div class="head">头部内容</div>
+       <div class="content">
+           <p>内容</p>
+           <p>内容</p>
+           <p>内容</p>
+           <p>内容</p>
+           <p>内容</p>
+           <p>内容</p>
+           <p>内容</p>
+           <p>内容</p>
+           <p>内容</p>
+           <p>内容</p>
+           <p>内容</p>
+           <p>内容</p>
+           <p>内容</p>
+           <p>内容</p>
+           <p>内容</p>
+           <p>最后的内容行</p>
+        </div> 
+   </div>
+   <script>
+       let Obox = document.querySelector('.box')
+       let Ohead = document.querySelector('.head')
+       let Ocontent = document.querySelector('.content')
+       console.log(Obox.clientHeight, Ohead.clientHeight)
+       console.log(Obox.clientHeight - Ohead.clientHeight)
+       Ocontent.style.height = Obox.clientHeight - Ohead.clientHeight + 'px'
+   </script>
+</body>
+</html>
