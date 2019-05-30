@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>文件预览</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+        .up-box {
+            width: 200px;
+            height: 80px;
+            line-height: 80px;
+            text-align: center;
+            border: 2px dotted #ddd;
+            margin: 20px auto;
+            color: #27ae60;
+        }
+        .up-box input {
+            display: none;
+        }
+        .preview {
+            margin: auto;
+            text-align: center;
+        }
+        .preview img {
+            background-color: #2c3e50;
+            display: none;
+        }
+        .preview video {
+            width: 600px;
+            height: 400px;
+            display: none;
+        }
+        .show {
+            display: block !important;
+            margin: auto;
+        }
+
+
+    </style>
+</head>
+<body>
+    <!-- 选择文件 -->
+    <div class="up-box">
+        <input type="file">
+        <span>请选择文件</span>
+    </div>
+
+
+    <!-- 预览文件 -->
+    <div class="preview">
+        <h2>图片/视屏 可预览</h2>
+        <img />
+        <video controls>
+        </video>
+    </div>
+
+
+    <script>
+        const upE = document.querySelector('.up-box')
+        const chooseE = document.querySelector('.up-box input')
+        const img = document.querySelector('.preview img')
+        const video = document.querySelector('.preview video')
+        
+        let url = ''        
+        upE.addEventListener('click', function(e) {
+            chooseE.click()
+        })
+
+        chooseE.addEventListener('change', function(e) {
+            //--- 清空内存文件
+            URL.revokeObjectURL(url)
+            url = ''
+            //---- 隐藏预览元素
+            img.classList.remove('show')
+            video.classList.remove('show')
+            //--- 获取文件
+            const file = e.currentTarget.files[0]
+            //--- 文件类型
+            const type = file.type.split('/')[0]
+            //---- url
+            url = URL.createObjectURL(file)
+            //---- 预览
+            if(type === 'image') {
+                img.setAttribute('src', url)
+                img.classList.add('show')
+            }
+            if(type === 'video') {
+                video.setAttribute('src', url)
+                video.classList.add('show')
+            }
+            //---- 保证可选同一文件
+            chooseE.value = ''
+            
+        })
+
+
+
+    </script>
+</body>
+</html>

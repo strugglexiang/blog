@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>得到任意文件的base64URL</title>
+    <style>
+        .base64 {
+            width: 80%;
+            margin: auto;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <p>请拖入任意文件</p>
+    <div class="base64"></div>
+    <script>
+        var ele = document.querySelector('.base64')
+
+        window.addEventListener('dragenter', function(e) {
+            e.preventDefault()
+        }, false)
+
+        window.addEventListener('dragover', function(e) {
+            e.preventDefault()
+        }, false)
+
+
+        window.addEventListener('drop', function(e) {
+            e.preventDefault()
+            var file = e.dataTransfer.files[0]
+            var reader = new FileReader()
+            reader.addEventListener('loadend', function(e) {
+                var result = e.currentTarget.result
+                ele.innerHTML = result
+            })
+            reader.readAsDataURL(file)
+        })
+
+    </script>
+</body>
+</html>
