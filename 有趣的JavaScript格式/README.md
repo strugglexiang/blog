@@ -91,6 +91,7 @@ arrtype[0] = 254
 arrtype[1] = 1
 console.log(a)
 ```
+
 ![](http://source.strugglexiang.top/Fn-GADyzUxa1UQZuyQserQxdGOVA)
 
 
