@@ -92,7 +92,7 @@ arrtype[1] = 1
 console.log(a)
 ```
 
-![](http://source.strugglexiang.top/Fn-GADyzUxa1UQZuyQserQxdGOVA)
+![](http://source.strugglexiang.top/typeArray.png)
 
 
 ## canvas与buffer
