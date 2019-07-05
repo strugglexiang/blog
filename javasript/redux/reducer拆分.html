@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Redux的自我实现</title>
+    <script src="./index.js"></script>
+</head>
+<body>
+    <div>
+        <div>
+            <span id='name'></span>
+            <span id='showCount'></span>
+        </div>
+        <div>
+            <input type="text" id='input'>
+            <button id='changeName'>changeName</button>
+        </div>
+        <div>
+            <button id='add'>+</button>
+            <button id='cut'>-</button>
+        </div>
+    </div>
+    <script>
+        let addBt = document.getElementById('add')
+        let cutBt = document.getElementById('cut')
+        let showCount = document.getElementById('showCount')
+        
+        let showName= document.getElementById('name')
+        let input = document.getElementById('input')
+        let changeNameBt = document.getElementById('changeName')
+
+        let count = (state = 0, action) => {
+            switch(action.type) {
+                case 'add': 
+                    return state + 1
+                case 'cut':
+                    return state - 1
+                default:
+                    return state
+            }
+        }
+
+        let name = (state = '测试名称', action) => {
+            switch(action.type) {
+                case 'set': 
+                    return action.text
+                default:
+                    return state
+            }
+        }
+
+        
+        //---------- store
+        let store = Redux.createStore(Redux.combineReducers({
+            count, 
+            name
+        }))
+
+        addBt.onclick = function() {
+            store.dispatch({
+                type: 'add'
+            })
+        }
+
+        cutBt.onclick = function() {
+            store.dispatch({
+                type: 'cut'
+            })
+        }
+
+        changeNameBt.onclick = function () {
+            store.dispatch({
+                type: 'set',
+                text: input.value
+            })
+        }
+
+
+        //-------- 渲染
+        const render = () => {
+            console.log(store.getState())
+            showCount.innerHTML = store.getState().count
+            showName.innerHTML  = store.getState().name
+        }
+        render()
+
+        //-------- 
+        let unRender = store.subscribe(render)
+
+
+    </script>
+</body>
+</html>

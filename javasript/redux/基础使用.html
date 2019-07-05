@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Redux的自我实现</title>
+    <script src="./index.js"></script>
+</head>
+<body>
+    <div>
+        <div>
+            <span id='showCount'></span>
+        </div>
+        <div>
+            <button id='add'>+</button>
+            <button id='cut'>-</button>
+        </div>
+    </div>
+    <script>
+        let addBt = document.getElementById('add')
+        let cutBt = document.getElementById('cut')
+        let showCount = document.getElementById('showCount')
+
+        let count = (state = 0, action) => {
+            switch(action.type) {
+                case 'add': 
+                    return state + 1
+                case 'cut':
+                    return state - 1
+                default:
+                    return state
+            }
+        }
+        
+        let store1 = Redux.createStore(count)
+        let store2 = Redux.createStore(count)
+        // addBt.onclick = function() {
+        //     store.dispatch({
+        //         type: 'add'
+        //     })
+        // }
+
+        // cutBt.onclick = function() {
+        //     store.dispatch({
+        //         type: 'cut'
+        //     })
+        // }
+
+        // //-------- 渲染
+        // const render = () => {
+        //     showCount.innerHTML = store.getState()
+        // }
+        // render()
+
+        // //-------- 
+        // let unRender = store.subscribe(render)
+
+
+    </script>
+</body>
+</html>

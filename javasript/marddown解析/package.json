@@ -1,0 +1,10 @@
+{
+  "name": "",
+  "version": "",
+  "description": "pygmentize-bundled",
+  "dependencies": {
+    "marked": "^0.5.0",
+    "pygmentize-bundled": "^2.3.0",
+    "requirejs": "^2.3.6"
+  }
+}

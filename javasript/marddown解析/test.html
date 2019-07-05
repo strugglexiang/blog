@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./node_modules/marked/lib/marked.js"></script>
+    
+    <link href="http://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css" rel="stylesheet">
+    <script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>
+    <title>markdown解析高亮</title>
+    <style>
+        body {
+
+        }
+        textarea {
+            /* width: 800px;
+            height: 400px; */
+        }
+    </style>
+</head>
+<body>
+    <!-- <input type="textarea"> -->
+    <textarea >
+    </textarea >
+    <div>
+        <button>解析</button>
+    </div>
+    <div class="text">
+
+    </div>
+    <script>
+
+        // ---------------- marked配置
+        //基本设置
+        var rendererMD = new marked.Renderer()
+        marked.setOptions({
+            renderer: rendererMD,
+            gfm: true,
+            tables: true,
+            breaks: false,
+            pedantic: false,
+            sanitize: false,
+            smartLists: true,
+            smartypants: false, 
+            highlight: function (code) {
+                return hljs.highlightAuto(code).value;
+            }         
+        })
+        //高亮
+        // marked.setOptions({
+        //     highlight: function (code) {
+        //         return hljs.highlightAuto(code).value;
+        //     }
+        // });        
+        // ---------------  解析
+        let textarea = document.querySelector('textarea')
+        let bt = document.querySelector('button')
+        let text= document.querySelector('.text')
+
+        
+
+        // console.log(bt)
+        bt.onclick = function(){
+            console.log(textarea.value)
+            // console.log(marked(textarea.value))          
+            text.innerHTML = marked(textarea.value)
+        }
+             
+    </script>
+</body>
+</html>
