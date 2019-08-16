@@ -85,7 +85,7 @@ css
     <div class="box"></div>
 </div>
 ```
-[戳这里看演示]()
+[戳这里看演示](http://effects.strugglexiang.xyz/other/flex最后一行左对齐/列数固定并且子元素宽度固定-1.html)
 
 
 ## 方法二
@@ -134,7 +134,7 @@ html
     <div class="box"></div>
 </div>
 ```
-[戳这里看演示]()
+[戳这里看演示](http://effects.strugglexiang.xyz/other/flex最后一行左对齐/列数固定并且子元素宽度固定-2.html)
 
 
 
@@ -193,7 +193,7 @@ html
     <div class="box size1"></div>
 </div>
 ```
-[戳这里看演示]()     
+[戳这里看演示](http://effects.strugglexiang.xyz/other/flex最后一行左对齐/列数不固定并且子元素宽度不固定-1.html)   
 
 **注意**：`box`的外面设置为10，使得非最后一列的两个子元素间的最小间距是20。同时最后一列的元素间距只能为20。
 
@@ -251,7 +251,7 @@ html
 </div>
 ```
 
-[戳这里看演示]()   
+[戳这里看演示](http://effects.strugglexiang.xyz/other/flex最后一行左对齐/列数不固定并且子元素宽度不固定-2.html)   
 **注意**：`box`的外面设置为10，使得非最后一列的两个子元素间的最小间距是20。同时最后一列的元素间距只能为20。
 
 # 列数不固定并且子元素宽度固定
@@ -260,7 +260,29 @@ html
 
 css
 ```css
+.container {
+    max-width: 800px;
+    max-height: 600px;
+    border: 1px solid #ddd;
+    overflow: auto;
+    resize: horizontal;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.box {
+    margin-top: 10px;
+    width: 180px;
+    height: 100px;
+    background: skyblue;
+}
+/* 空白标签 */
+.fill_space {
+    width: 180px;
+}
 ```
 
-[戳这里看演示]()
+[戳这里看演示](http://effects.strugglexiang.xyz/other/flex最后一行左对齐/列数不固定并且子元素宽度固定.html)
 
