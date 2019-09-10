@@ -38,7 +38,7 @@ html代码
 ```
 
 结果如下图：  
-![问题点](http://source.strugglexiang.top/1565938865.jpg)
+![问题点](http://source.strugglexiang.xyz/1565938865.jpg)
 
 
 这是实现以下几种情况下的解决方案（实现最后一列左对齐）：

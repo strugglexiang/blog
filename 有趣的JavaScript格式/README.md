@@ -78,7 +78,7 @@ ArrayBuffer 类似数组，每一格放入 1Byte（8bit）数据，也就是八�
 > 它们会将缓冲区中的数据表示为特定的格式，并通过这些格式来读写缓冲区的内容。
 
 **类型数组对象**
-![](http://source.strugglexiang.top/Fqf6mcQzr-qR965-KIHHqJfjW1P1)
+![](http://source.strugglexiang.xyz/Fqf6mcQzr-qR965-KIHHqJfjW1P1)
 
 
 ```js
@@ -92,7 +92,7 @@ arrtype[1] = 1
 console.log(a)
 ```
 
-![](http://source.strugglexiang.top/typeArray.png)
+![](http://source.strugglexiang.xyz/typeArray.png)
 
 
 ## canvas与buffer
@@ -134,7 +134,7 @@ base64编码：用`[A-Za-z0-9+/]`64字符(再加上末尾垫字=，其实是65�
 2. 将每3个8bit字符(24个进制位)分为4组(每组6个进制位)
 3. 每组(6字节)前面补00，变为32位,即变为4字节。
 4. 根据下表得找到对应的base编码值
-![](http://source.strugglexiang.top/FpDkhhQMyKap9r1_P4eNqNJzSHvP)
+![](http://source.strugglexiang.xyz/FpDkhhQMyKap9r1_P4eNqNJzSHvP)
 
 这个表看似复杂，其实就是下面`base64数组`的`键值对`关系
 ```js
