@@ -72,7 +72,7 @@ fn2() // =>  20
 
 
 ## call、apply、bind的作用
-我们经常使用`call、apply、bind`3个方法来指定函数内部`this`的指向。
+我们经常使用`call、apply、bind`3个方法来指定函数内部`this`。
 ```js
 var a = 20
 var obj = {
@@ -103,11 +103,50 @@ console.log(instance) // {name: "Bob"}
 
 ## 箭头函数
 * 普通函数在运行时才会确认this的指向。
-* 箭头函数在编译时就确认了this的指向，此时this指向它外层的作用域中的`this`。
+* 箭头函数在编译时就确认了this的指向，此时this指向它外层的作用域。
 
 > 箭头函数不会创建自己的this,它只会从自己的作用域链的上一层继承this。
 
+例：
+```js
+var a = 20
+var fn = () => {
+    console.log(this.a)
+}
+var obj = {
+    a: 10
+}
+obj.fn = fn
 
+var f = obj.fn
+
+fn() //20
+obj.fn() //20
+window.obj.fn() //20
+f() //20
+```
+可以看到，不论`this`如何调用，它永远固定在外层的作用域，此时为window。
+
+
+有时候，箭头函数外层作用域的this是不确定的。
+例：
+```js
+var a = 20
+var obj = {
+    a: 10,
+    fn: function() {
+        (() => {
+            console.log(this.a)
+        })()
+    }
+}
+
+var f = obj.fn
+
+obj.fn() // 10
+f() //20
+```
+上述示例，fn内部有一个箭头函数自执行，这个箭头函数的`this`指向外层作用域fn，也就是说，fn的this指向什么，箭头函数的this就指向什么。`obj.fn()`运行时，fn的`this为obj`，所以箭头函数的this也为obj；`window.f`运行时，fn的this为`window`，此时箭头函数的this也为`window`。
 
 
 
