@@ -148,11 +148,39 @@ f() //20
 ```
 上述示例，fn内部有一个箭头函数自执行，这个箭头函数的`this`指向外层作用域fn，也就是说，fn的this指向什么，箭头函数的this就指向什么。`obj.fn()`运行时，fn的`this为obj`，所以箭头函数的this也为obj；`window.f`运行时，fn的this为`window`，此时箭头函数的this也为`window`。
 
-
-
 # 如何修改this的指向
+如果需要人为的修改this的指向，有以下几种方法：
+
+* 提前用变量缓存this
+* 使用call
+* 使用apply
+* 使用bind
+* 箭头函数
+* new操作符
+
 ## 通过变量_this提前缓存
+这个方法常常使用到，通过一个变量（例如_this）手动缓存this，当需要使用到时用缓存的变量替换`this`。
+
+```js
+var a = 10
+var obj =  {
+    a: 20,
+    fn: function() {
+        var _this = this
+        setTimeout(function() {
+            console.log(this.a, _this.a)
+        }, 100)
+    }
+}
+obj.fn() // 10 20
+```
+`obj.fn`中的this指向obj，`window.setTimeout`中的this指向window。
+
+
 ## call方法
+`call`方法的作用是指定函数内部的this并立即调用函数
+
+
 ## apply方法
 ## bind方法
 ## 箭头函数
