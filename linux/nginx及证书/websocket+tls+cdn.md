@@ -31,6 +31,11 @@ systemctl disable firewalld.service
 wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh && chmod +x bbr.sh && ./bbr.sh
 ```
 
+```
+// bbrplus
+wget "https://github.com/cx9208/bbrplus/raw/master/ok_bbrplus_centos.sh" && chmod +x ok_bbrplus_centos.sh && ./ok_bbrplus_centos.sh
+```
+
 - 安装成功后执行`uname -r`，显示`4.14.129-bbrplus`则切换内核成功
 - 执行`lsmod | grep bbr，显示有bbrplus则开启成功
 
