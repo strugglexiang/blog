@@ -3,7 +3,7 @@
   "version": "",
   "description": "pygmentize-bundled",
   "dependencies": {
-    "marked": "^0.6.1",
+    "marked": "^4.0.10",
     "pygmentize-bundled": "^2.3.0",
     "requirejs": "^2.3.6"
   }
